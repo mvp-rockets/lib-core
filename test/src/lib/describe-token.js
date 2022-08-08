@@ -50,6 +50,21 @@ describe('token', () => {
 				expect(error).to.be.eql('Jwt key not provided');
 			})(decodedUserInfoResult);
 		});
+
+		it('should return error if jwt token is diff', async () => {
+			token.initialize(jwt.key);
+			const userTokenResult = await token.generate(user);
+			whenResult(
+				async (userToken) => {
+					const jwt2 = await factory.build('jwt');
+					token.initialize(jwt2.key);
+					const decodedUserInfoResult = await token.decode(userToken);
+					verifyResultError((error) => {
+						expect(error).to.be.not.null;
+					})(decodedUserInfoResult);
+				}
+			)(userTokenResult);
+		});
 	});
 
 	afterEach(() => {
