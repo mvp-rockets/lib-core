@@ -1,6 +1,6 @@
 require('app-module-path').addPath(__dirname);
 
-// utilities
+// * utilities
 const composeResult = require('src/lib/utilities/compose-result');
 const ifElse = require('src/lib/utilities/ifElse');
 const respond = require('src/lib/utilities/respond');
@@ -23,7 +23,7 @@ module.exports.utilities = {
 	args
 };
 
-// validations
+// * validations
 const boolean = require('src/lib/validations/boolean');
 const bulk = require('src/lib/validations/bulk');
 const hasLengthOf = require('src/lib/validations/hasLengthOf');
@@ -60,13 +60,13 @@ module.exports.validations = {
 	validate
 };
 
-// Jwt helper
+// * Jwt helper
 
 const token = require('src/lib/token');
 
 module.exports.token = token;
 
-// logger
+// * logger
 const logger = require('src/lib/logger');
 
 module.exports.logger = logger;
