@@ -13,4 +13,4 @@ pipelines:
               - node
             script:
               - npm install
-              - npm test:ci
+              - npm run test:ci
