@@ -2,7 +2,9 @@ module.exports = {
 	env: {
 		browser: true,
 		commonjs: true,
-		es2021: true
+		es2021: true,
+		node: true,
+		mocha: true
 	},
 	extends: 'airbnb-base',
 	parserOptions: {
@@ -10,6 +12,8 @@ module.exports = {
 	},
 	rules: {
 		'no-unused-expressions': 0,
+		'no-promise-executor-return': 'off',
+		'func-names': 'off',
 		'chai-friendly/no-unused-expressions': 'off',
 		'class-methods-use-this': 'off',
 		'no-multi-str': 'off',

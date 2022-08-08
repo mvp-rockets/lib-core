@@ -4,7 +4,7 @@
   "description": "A functional utility library for developing express api",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --recursive --exit",
+    "test:watch": "NODE_ENV=test ./node_modules/.bin/supervisor -q -n exit -x ./node_modules/.bin/mocha -- --recursive --config test/.mocharc.js",
     "start": "nodemon index.js"
   },
   "engines": {
@@ -30,6 +30,7 @@
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.19",
     "ramda": "^0.28.0",
+    "supervisor": "^0.12.0",
     "uuid": "^8.3.2",
     "uuid-validate": "^0.0.3",
     "winston": "^3.8.1",
@@ -42,8 +43,6 @@
     "chai": "^4.3.6",
     "eslint": "^8.21.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-chai-friendly": "^0.7.2",
-    "eslint-plugin-mocha": "^10.1.0",
     "factory-girl": "^5.0.4",
     "mocha": "^10.0.0",
     "sinon": "^14.0.0",
