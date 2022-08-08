@@ -24,9 +24,9 @@ module.exports.utilities = {
 };
 
 // * validations
-const boolean = require('src/lib/validations/boolean');
+const isBoolean = require('src/lib/validations/is-boolean');
 const bulk = require('src/lib/validations/bulk');
-const hasLengthOf = require('src/lib/validations/hasLengthOf');
+const hasLengthOf = require('src/lib/validations/has-length-of');
 const isEmail = require('src/lib/validations/is-email');
 const isMobileNumber = require('src/lib/validations/is-mobile-number');
 const isStringNumeric = require('src/lib/validations/is-string-numeric');
@@ -42,7 +42,7 @@ const validate = require('src/lib/validations/validate');
 const ValidationError = require('src/lib/validations/validation-error');
 
 module.exports.validations = {
-	boolean,
+	isBoolean,
 	bulk,
 	hasLengthOf,
 	isEmail,

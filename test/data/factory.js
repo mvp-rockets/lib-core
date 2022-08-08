@@ -2,7 +2,8 @@ const { factory } = require('factory-girl');
 
 factory.define('user', Object, {
 	id: factory.chance('guid'),
-	name: factory.chance('name')
+	firstName: factory.chance('first'),
+	lastName: factory.chance('last')
 });
 
 factory.define('jwt', Object, {
