@@ -1,9 +1,10 @@
-const { factory, chance } = require('factory-girl');
+const { factory } = require('factory-girl');
 
 factory.define('user', Object, {
 	id: factory.chance('guid'),
 	firstName: factory.chance('first'),
 	lastName: factory.chance('last'),
+	mobileNumber: factory.chance('phone', { formatted: false }),
 	age: factory.chance('age')
 });
 
