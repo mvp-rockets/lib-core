@@ -7,7 +7,7 @@
     "start": ". ~/.nvm/nvm.sh && nvm use; nodemon index.js",
     "test:watch": "NODE_ENV=test ./node_modules/.bin/supervisor -q -n exit -x ./node_modules/.bin/mocha -- --recursive --config test/.mocharc.js",
     "test:ci": "NODE_ENV=ci ./node_modules/.bin/mocha --recursive --exit --config ./test/.mocharc.js",
-    "coverage": "NODE_ENV=test nyc --reporter=html ./node_modules/.bin/mocha --recursive --exit"
+    "coverage": "NODE_ENV=test nyc --reporter=html ./node_modules/.bin/mocha --recursive --config ./test/.mocharc.js --exit"
   },
   "engines": {
     "node": "16.x"

@@ -7,6 +7,8 @@
 node_modules/
 logs/
 dist/
+.nyc_output
+coverage
 
 # Compiled Java class files
 *.class
