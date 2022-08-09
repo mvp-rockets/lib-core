@@ -20,21 +20,23 @@ describe('utilities: api error', () => {
 		expect(result).to.be.eql({
 			code: statusCode,
 			error,
-			errorMessage
+			errorMessage,
+			errorDescription: 'Not Implemented'
 		});
 	});
 
 	it('should return default 500 status code', async () => {
 		const error = {
-			stack: 'not implemented'
+			stack: 'some error'
 		};
-		const errorMessage = 'Method not implemented';
+		const errorMessage = 'failed to do the operation';
 		const result = new ApiError(error, errorMessage);
 		expect(result).to.be.instanceOf(ApiError);
 		expect(result).to.be.eql({
 			code: 500,
 			error,
-			errorMessage
+			errorMessage,
+			errorDescription: 'Internal Server Error'
 		});
 	});
 
