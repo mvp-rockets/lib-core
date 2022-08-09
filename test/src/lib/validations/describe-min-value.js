@@ -24,8 +24,6 @@ describe('validations: min value', () => {
 		expect(result).to.be.true;
 	});
 
-	
-
 	afterEach(() => {
 		sandbox.verifyAndRestore();
 	});
