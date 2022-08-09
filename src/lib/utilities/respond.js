@@ -20,7 +20,7 @@ const sendFailure = R.curry(async (errorMessage, error) => {
 	if (error.constructor.name === 'ApiError') {
 		return Result.Error(error);
 	}
-	return Result.Error(new ApiError(0, error, errorMessage));
+	return Result.Error(new ApiError(error, errorMessage));
 });
 
 module.exports = async (result, message, errorMessage) => whenResult(

@@ -9,6 +9,7 @@ const whenResult = require('src/lib/utilities/whenResult');
 const withArgs = require('src/lib/utilities/with-args');
 const args = require('src/lib/utilities/args');
 const utilityLogger = require('src/lib/utilities/logger');
+const ApiError = require('src/lib/utilities/api-error');
 
 module.exports.utilities = {
 	logInfo: utilityLogger.logInfo,
@@ -20,7 +21,8 @@ module.exports.utilities = {
 	transformToResult,
 	whenResult,
 	withArgs,
-	args
+	args,
+	ApiError
 };
 
 // * validations
