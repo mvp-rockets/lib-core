@@ -7,6 +7,7 @@ chai.use(sinonChai);
 const { factory } = require('test/data/factory');
 const whenResult = require('src/lib/utilities/whenResult');
 const Result = require('folktale/result');
+const { verifyResultError } = require('helpers/verifiers');
 
 const getFullName = ((firstName, lastName) => `${firstName} ${lastName}`);
 
@@ -38,6 +39,19 @@ describe('utilities: when result', () => {
 				expect(error).to.be.eql('some error');
 			}
 		)(Result.Error('some error'));
+	});
+
+	it('should return error if failure function not given', async () => {
+		const finalResult = await whenResult(
+			(userInfo) => {
+				// ! For current test case flow will not come here as we are testing failure function
+				const fullName = getFullName(userInfo.firstName, userInfo.lastName);
+				expect(fullName).to.be.eql(`${userInfo.firstName} ${userInfo.lastName}`);
+			}
+		)(Result.Error('some error'));
+		verifyResultError((error) => {
+			expect(error).to.be.eql('some error');
+		})(finalResult);
 	});
 
 	afterEach(() => {
