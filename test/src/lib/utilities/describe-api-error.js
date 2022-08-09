@@ -5,20 +5,20 @@ const sinonChai = require('sinon-chai');
 const { expect } = chai;
 chai.use(sinonChai);
 const ApiError = require('src/lib/utilities/api-error');
+const HTTP_CONSTANT = require('src/lib/utilities/http-constant');
 
 describe('utilities: api error', () => {
 	const sandbox = sinon.createSandbox();
 
 	it('should return api error instance with given status code, error message, error', async () => {
-		const statusCode = 501;
 		const error = {
 			stack: 'not implemented'
 		};
 		const errorMessage = 'Method not implemented';
-		const result = new ApiError(error, errorMessage, statusCode);
+		const result = new ApiError(error, errorMessage, HTTP_CONSTANT.NOT_IMPLEMENTED);
 		expect(result).to.be.instanceOf(ApiError);
 		expect(result).to.be.eql({
-			code: statusCode,
+			code: HTTP_CONSTANT.NOT_IMPLEMENTED,
 			error,
 			errorMessage,
 			errorDescription: 'Not Implemented'
@@ -33,7 +33,7 @@ describe('utilities: api error', () => {
 		const result = new ApiError(error, errorMessage);
 		expect(result).to.be.instanceOf(ApiError);
 		expect(result).to.be.eql({
-			code: 500,
+			code: HTTP_CONSTANT.INTERNAL_SERVER_ERROR,
 			error,
 			errorMessage,
 			errorDescription: 'Internal Server Error'

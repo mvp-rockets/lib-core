@@ -10,6 +10,7 @@ const withArgs = require('src/lib/utilities/with-args');
 const args = require('src/lib/utilities/args');
 const utilityLogger = require('src/lib/utilities/logger');
 const ApiError = require('src/lib/utilities/api-error');
+const HTTP_CONSTANT = require('src/lib/utilities/http-constant');
 
 module.exports.utilities = {
 	logInfo: utilityLogger.logInfo,
@@ -22,7 +23,8 @@ module.exports.utilities = {
 	whenResult,
 	withArgs,
 	args,
-	ApiError
+	ApiError,
+	HTTP_CONSTANT
 };
 
 // * validations
