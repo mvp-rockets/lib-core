@@ -30,7 +30,7 @@ describe('validations: is string numeric', () => {
 		expect(result).to.be.false;
 	});
 
-	it('should return false if the given input contain alphanumeirc', async () => {
+	it('should return false if the given input contain alpha-numeric', async () => {
 		const result = isMobileNumber('123456789a');
 		expect(result).to.be.false;
 	});

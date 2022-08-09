@@ -19,7 +19,6 @@ describe('validations: is string numeric', () => {
 		expect(result).to.be.false;
 	});
 
-
 	afterEach(() => {
 		sandbox.verifyAndRestore();
 	});

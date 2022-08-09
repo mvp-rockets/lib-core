@@ -11,6 +11,7 @@ module.exports = {
 		ecmaVersion: 'latest'
 	},
 	rules: {
+		'no-restricted-globals': ['error', 'event'],
 		'no-unused-expressions': 0,
 		'no-promise-executor-return': 'off',
 		'func-names': 'off',
