@@ -5,6 +5,7 @@ factory.define('user', Object, {
 	firstName: factory.chance('first'),
 	lastName: factory.chance('last'),
 	mobileNumber: factory.chance('phone', { formatted: false }),
+	email: factory.chance('email'),
 	age: factory.chance('age')
 });
 

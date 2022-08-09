@@ -41,7 +41,7 @@ const minValue = require('src/lib/validations/min-value');
 const notEmpty = require('src/lib/validations/not-empty');
 const numeric = require('src/lib/validations/numeric');
 const shouldBeUuid = require('src/lib/validations/should-be-uuid');
-const timestamp = require('src/lib/validations/timestamp');
+const isTimestamp = require('src/lib/validations/is-timestamp');
 const validate = require('src/lib/validations/validate');
 const ValidationError = require('src/lib/validations/validation-error');
 
@@ -59,7 +59,7 @@ module.exports.validations = {
 	notEmpty,
 	numeric,
 	shouldBeUuid,
-	timestamp,
+	isTimestamp,
 	ValidationError,
 	validate
 };

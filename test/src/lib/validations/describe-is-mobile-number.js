@@ -7,7 +7,7 @@ chai.use(sinonChai);
 const isMobileNumber = require('src/lib/validations/is-mobile-number');
 const { factory } = require('test/data/factory');
 
-describe('validations: is string numeric', () => {
+describe('validations: is mobile number', () => {
 	const sandbox = sinon.createSandbox();
 
 	let user;
