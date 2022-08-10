@@ -14,9 +14,6 @@ const sendSuccess = R.curry(async (message, result) => {
 });
 
 const sendFailure = R.curry(async (errorMessage, error) => {
-	if (error.constructor.name === 'ValidationError') {
-		return Result.Error(error);
-	}
 	if (error.constructor.name === 'ApiError') {
 		return Result.Error(error);
 	}
