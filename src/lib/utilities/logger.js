@@ -2,6 +2,7 @@ const R = require('ramda');
 const Maybe = require('folktale/maybe');
 const Result = require('folktale/result');
 const logger = require('src/lib/logger');
+
 const fromMayBe = (maybe) => {
 	let value;
 	if (Maybe.hasInstance(maybe)) value = maybe.getOrElse({});
