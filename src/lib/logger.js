@@ -60,4 +60,4 @@ if (config.type === 'aws') {
 	});
 }
 
-module.exports = logger;
+module.exports.logger = logger;

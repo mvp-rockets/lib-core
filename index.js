@@ -1,6 +1,6 @@
 require('app-module-path').addPath(__dirname);
 
-// * utilities
+// * Utilities
 const composeResult = require('src/lib/utilities/compose-result');
 const ifElse = require('src/lib/utilities/ifElse');
 const respond = require('src/lib/utilities/respond');
@@ -23,13 +23,14 @@ module.exports.utilities = {
 	whenResult,
 	withArgs,
 	args,
-	ApiError,
-	HTTP_CONSTANT
+	ApiError
 };
 
-// * validations
+// * Http constants
+module.exports.HTTP_CONSTANT = HTTP_CONSTANT;
+
+// * Validations
 const isBoolean = require('src/lib/validations/is-boolean');
-const bulk = require('src/lib/validations/bulk');
 const hasLengthOf = require('src/lib/validations/has-length-of');
 const isEmail = require('src/lib/validations/is-email');
 const isMobileNumber = require('src/lib/validations/is-mobile-number');
@@ -45,7 +46,6 @@ const validate = require('src/lib/validations/validate');
 
 module.exports.validations = {
 	isBoolean,
-	bulk,
 	hasLengthOf,
 	isEmail,
 	isMobileNumber,
@@ -66,7 +66,7 @@ const token = require('src/lib/token');
 
 module.exports.token = token;
 
-// * logger
+// * Logger
 const logger = require('src/lib/logger');
 
 module.exports.logger = logger;
