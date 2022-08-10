@@ -1,6 +1,7 @@
 const R = require('ramda');
-const ValidationError = require('src/lib/validations/validation-error');
+const ApiError = require('src/lib/utilities/api-error');
 const Result = require('folktale/result');
+const HTTP_CONSTANT = require('src/lib/utilities/http-constant');
 
 const notNil = R.compose(R.not, R.isNil);
 
@@ -22,7 +23,7 @@ const mapValueAndRules = R.curry((data, allRules) => {
 
 const generateValidationSet = (data, rules) => R.compose(R.flatten, mapValueAndRules)(data, rules);
 
-const validationError = (errors) => Result.Error(new ValidationError(0, errors));
+const validationError = (errors) => Result.Error(new ApiError(errors, 'Validation Error', HTTP_CONSTANT.BAD_REQUEST));
 
 const formResult = (errors) => R.cond([
 	[R.isEmpty, Result.Ok],
@@ -31,10 +32,10 @@ const formResult = (errors) => R.cond([
 
 const runSingleValidation = R.curry((value, actualObject, [test, message]) => (test(value, actualObject) ? null : message));
 
-const returnFirstOccuranceOfError = (value, object, rules) => R.compose(R.find(notNil), R.map(runSingleValidation(value, object)))(rules);
+const returnFirstOccurrenceOfError = (value, object, rules) => R.compose(R.find(notNil), R.map(runSingleValidation(value, object)))(rules);
 
 const runValidations = R.curry(
-	(actualObject, dataSet) => R.map((dataRule) => returnFirstOccuranceOfError(dataRule.value, actualObject, dataRule.rules))(dataSet)
+	(actualObject, dataSet) => R.map((dataRule) => returnFirstOccurrenceOfError(dataRule.value, actualObject, dataRule.rules))(dataSet)
 );
 
 module.exports = (rules, data) => {
