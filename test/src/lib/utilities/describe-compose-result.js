@@ -18,12 +18,6 @@ const updateUserWithGreeting = (async (greeting, user) => {
 	return Result.Ok(updatedUser);
 });
 
-const updateUserWithGreetingWithOutFolkTaleResult = (async (greeting, user) => ({
-	id: user.id,
-	fullName: user.fullName,
-	greeting
-}));
-
 const updateUserWithGreetingWithError = (async (greeting, user) => Result.Error('some error'));
 
 const updateUserFullName = (async (user) => {
