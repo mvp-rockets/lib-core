@@ -9,6 +9,7 @@ const whenResult = require('src/lib/utilities/whenResult');
 const withArgs = require('src/lib/utilities/with-args');
 const args = require('src/lib/utilities/args');
 const utilityLogger = require('src/lib/utilities/logger');
+const uuid = require('src/lib/utilities/uuid');
 const ApiError = require('src/lib/utilities/api-error');
 const HTTP_CONSTANT = require('src/lib/utilities/http-constant');
 
@@ -22,6 +23,7 @@ module.exports.utilities = {
 	transformToResult,
 	whenResult,
 	withArgs,
+	uuid,
 	args,
 	ApiError
 };
