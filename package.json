@@ -1,6 +1,6 @@
 {
   "name": "@napses/namma-lib",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "A functional utility library for developing express api",
   "main": "index.js",
   "scripts": {
@@ -50,5 +50,8 @@
     "mocha": "^10.0.0",
     "sinon": "^14.0.0",
     "sinon-chai": "^3.7.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
