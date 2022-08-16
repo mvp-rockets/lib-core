@@ -1,6 +1,7 @@
-
 ## A lib to help us the ease of functional programming (based on ramda (https://ramdajs.com/) & folktale(https://www.npmjs.com/package/folktale))
 
+```
+.
 └── lib
     ├── logger.js
     ├── token.js
@@ -31,7 +32,8 @@
         ├── should-be-uuid.js
         └── validate.js
 
-
+```
 
 ## Tutorials
+
 [Youtube Tutorials](https://www.youtube.com/playlist?list=PLBOupoLEhXiJtLvJtCG_WvC6P0kWzC4Jo)
