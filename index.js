@@ -45,6 +45,7 @@ const numeric = require('src/lib/validations/numeric');
 const shouldBeUuid = require('src/lib/validations/should-be-uuid');
 const isTimestamp = require('src/lib/validations/is-timestamp');
 const validate = require('src/lib/validations/validate');
+const checkGivenValues = require('src/lib/validations/check-given-values');
 
 module.exports.validations = {
 	isBoolean,
@@ -59,7 +60,8 @@ module.exports.validations = {
 	numeric,
 	shouldBeUuid,
 	isTimestamp,
-	validate
+	validate,
+	checkGivenValues
 };
 
 // * Jwt helper
