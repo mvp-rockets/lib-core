@@ -7,6 +7,7 @@ const respond = require('./src/lib/utilities/respond');
 const transformToResult = require('./src/lib/utilities/transform-to-result');
 const whenResult = require('./src/lib/utilities/whenResult');
 const withArgs = require('./src/lib/utilities/with-args');
+const doNothing = require('./src/lib/utilities/doNothing');
 const args = require('./src/lib/utilities/args');
 const utilityLogger = require('./src/lib/utilities/logger');
 const uuid = require('./src/lib/utilities/uuid');
@@ -23,6 +24,7 @@ module.exports.utilities = {
 	transformToResult,
 	whenResult,
 	withArgs,
+	doNothing,
 	uuid,
 	args,
 	ApiError
