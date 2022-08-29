@@ -67,8 +67,3 @@ module.exports.validations = {
 const token = require('./src/lib/token');
 
 module.exports.token = token;
-
-// * Logger
-const logger = require('./src/lib/token');
-
-module.exports.logger = logger;
