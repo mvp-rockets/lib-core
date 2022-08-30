@@ -107,9 +107,12 @@ const {
 ```
 
 - Only the HTTP_CONSTANT
-const {
-         HTTP_CONSTANT
-        } = require('@napses/namma-lib')
+
+  ```
+  const {
+  HTTP_CONSTANT
+  } = require('@napses/namma-lib')
+  ```
 
 ## 3. Video walkthrough Tutorials
 
