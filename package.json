@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "bitbucket.org:peoppl_co/lib-core.git"
+    "url": "https://bitbucket.org/peoppl_co/lib-core"
   },
   "keywords": [
     "functional",
