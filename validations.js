@@ -14,6 +14,8 @@ const numeric = require('./src/lib/validations/numeric');
 const shouldBeUuid = require('./src/lib/validations/should-be-uuid');
 const isTimestamp = require('./src/lib/validations/is-timestamp');
 const validate = require('./src/lib/validations/validate');
+const validateGivenPattern = require('./src/lib/validations/validate-given-pattern');
+const checkGivenValues = require('./src/lib/validations/check-given-values');
 
 module.exports = {
 	isBoolean,
@@ -28,5 +30,7 @@ module.exports = {
 	numeric,
 	shouldBeUuid,
 	isTimestamp,
-	validate
+	validate,
+	validateGivenPattern,
+	checkGivenValues
 };
