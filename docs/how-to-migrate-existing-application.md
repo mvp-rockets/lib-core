@@ -176,10 +176,25 @@ Below are the changes you need to do.
    ```
 
 3. Delete token file from inside the lib folder.
-   
+
 #### Migrating logger
 
 1. In your index.js add below line
+
    ```
-   
+   const { Logger } = require('@napses/namma-lib');
+   const config = require('config/config'); //your config file for aws credentials
+   Logger.initialize({
+   	isEnable: config.awsCloudwatch.enableAwsLogger, //for dev,test and ci keep isEnable=false
+   	type: 'aws',
+   	environment: config.env,
+   	configurations: {
+   		region: config.awsCloudwatch.region,
+   		accessKeyId: config.awsCloudwatch.accessKeyId,
+   		secretKey: config.awsCloudwatch.secretKey,
+   		logGroupName: config.awsCloudwatch.logGroupName,
+   		logStreamName: config.awsCloudwatch.logStreamName
+   	}
+   });
+
    ```
