@@ -1,6 +1,6 @@
 {
   "name": "@napses/namma-lib",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A functional utility library for developing express api",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "bitbucket.org:peoppl_co/lib-core.git"
+    "url": "https://bitbucket.org/peoppl_co/lib-core"
   },
   "keywords": [
     "functional",
@@ -27,6 +27,7 @@
   "dependencies": {
     "@google-cloud/logging-winston": "^5.1.2",
     "app-module-path": "^2.2.0",
+    "aws-sdk": "^2.1207.0",
     "folktale": "^2.3.2",
     "google-libphonenumber": "^3.2.30",
     "jsonwebtoken": "^8.5.1",
@@ -37,7 +38,7 @@
     "uuid": "^8.3.2",
     "uuid-validate": "^0.0.3",
     "winston": "^3.8.1",
-    "winston-cloudwatch": "^6.0.1",
+    "winston-cloudwatch": "^6.1.1",
     "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {

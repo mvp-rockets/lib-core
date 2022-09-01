@@ -12,17 +12,17 @@ const fromMayBe = (maybe) => {
 
 const logError = R.curry((message, value) => {
 	const error = fromMayBe(value);
-	logger.logger.log('error', message, { body: { error } });
+	logger.getLogger().log('error', message, { body: { error } });
 	return Result.Ok('Successfully logged error message');
 });
 
 const logInfo = R.curry((message, value) => {
-	logger.logger.log('info', message, { body: { data: fromMayBe(value) } });
+	logger.getLogger().log('info', message, { body: { data: fromMayBe(value) } });
 	return Result.Ok('Successfully logged info message');
 });
 
 const logDebug = R.curry((message, value) => {
-	logger.logger.log('debug', message, { body: { data: fromMayBe(value) } });
+	logger.getLogger().log('debug', message, { body: { data: fromMayBe(value) } });
 	return Result.Ok('Successfully logged debug message');
 });
 
