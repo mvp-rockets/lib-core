@@ -11,7 +11,6 @@
 #### A lib to help us the ease of functional programming (based on ramda (https://ramdajs.com/) & folktale(https://www.npmjs.com/package/folktale))
 
 ```
-.
 └── lib
     ├── logger.js
     ├── token.js
@@ -29,6 +28,7 @@
     │   ├── whenResult.js
     │   └── with-args.js
     └── validations
+        ├── check-given-values.js
         ├── has-length-of.js
         ├── is-boolean.js
         ├── is-email.js
@@ -41,6 +41,7 @@
         ├── not-empty.js
         ├── numeric.js
         ├── should-be-uuid.js
+        ├── validate-given-pattern.js
         └── validate.js
 
 ```
