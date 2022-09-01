@@ -2,6 +2,8 @@
     - [A lib to help us the ease of functional programming (based on ramda (https://ramdajs.com/) & folktale(https://www.npmjs.com/package/folktale))](#a-lib-to-help-us-the-ease-of-functional-programming-based-on-ramda-httpsramdajscom--folktalehttpswwwnpmjscompackagefolktale)
 - [3. Installation](#3-installation)
 - [4. How to imports.](#4-how-to-imports)
+- [5. How to use token](#5-how-to-use-token)
+- [6. How to use logger.](#6-how-to-use-logger)
 - [3. Video walkthrough Tutorials](#3-video-walkthrough-tutorials)
 
 ## 1. Introduction
@@ -113,6 +115,64 @@ const {
   HTTP_CONSTANT
   } = require('@napses/namma-lib')
   ```
+
+## 5. How to use token
+
+```
+<!-- initialize token in your index.js -->
+const {
+         token
+        } = require('@napses/namma-lib');
+
+token.initialize("Your Jwt secret key");
+
+<!-- Generate Token  -->
+const tokenResult =  await token.generate("Your object")
+
+console.log(tokenResult); // Result.Ok("Your generated token")
+
+<!-- decode token -->
+const decodedTokenResult =  await token.decode("Your token")
+
+console.log(decodedTokenResult); // Result.Ok("Your decoded object")
+
+if case of invalid or expired token
+console.log(decodedTokenResult); // Result.Error("Invalid token")
+
+```
+
+## 6. How to use logger.
+
+```
+<!-- initialize logger in your index.js -->
+const { Logger } = require('@napses/namma-lib');
+
+Logger.initialize({
+	isEnable: true, // for dev,qa use false
+	type: 'aws',
+	environment: "<env name>",
+	clsNameSpace: <"cls name for trace Id">,
+	configurations: {
+		region: <"aws region">,
+		accessKeyId: <"aws access Key Id">,
+		secretKey: <"aws secret Key">,
+		logGroupName: <"log group name">,
+		logStreamName: <"log stream name">
+	}
+});
+
+<!-- add below code for unique traceId for each request -->
+const { logInfo } = require('@napses/namma-lib/utilitiesut');
+app.use((req, res, next) => {
+	const namespace = cls.getNamespace("<cls name for trace Id>");
+	const platform = req.headers['x-platform'] || 'unknown-platform';
+	namespace.run(() => {
+		namespace.set('traceId', uuid.v4());
+		logInfo(`${req.method} ${req.originalUrl}`, { ...req.body, platform });
+		next();
+	});
+});
+```
 
 ## 3. Video walkthrough Tutorials
 
