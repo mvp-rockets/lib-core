@@ -14,19 +14,19 @@ const fromMayBe = (maybe) => {
 const logError = R.curry((message, value) => {
 	const namespace = cls.getNamespace(logger.getConfig().clsNameSpace);
 	const error = fromMayBe(value);
-	logger.getLogger().error(message, { body: error, traceId: namespace.get('traceId') });
+	logger.getLogger().error(message, { body: error, traceId: namespace ? namespace.get('traceId') : '' });
 	return Result.Ok('Successfully logged error message');
 });
 
 const logInfo = R.curry((message, value) => {
 	const namespace = cls.getNamespace(logger.getConfig().clsNameSpace);
-	logger.getLogger().info(message, { body: fromMayBe(value), traceId: namespace.get('traceId') });
+	logger.getLogger().info(message, { body: fromMayBe(value), traceId: namespace ? namespace.get('traceId') : '' });
 	return Result.Ok('Successfully logged info message');
 });
 
 const logDebug = R.curry((message, value) => {
 	const namespace = cls.getNamespace(logger.getConfig().clsNameSpace);
-	logger.getLogger().debug(message, { body: fromMayBe(value), traceId: namespace.get('traceId') });
+	logger.getLogger().debug(message, { body: fromMayBe(value), traceId: namespace ? namespace.get('traceId') : '' });
 	return Result.Ok('Successfully logged debug message');
 });
 
