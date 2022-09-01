@@ -60,12 +60,13 @@ const reload = () => {
 	}
 };
 module.exports.initialize = ({
-	type, configurations, environment, isEnable
+	type, configurations, environment, isEnable, clsNameSpace
 }) => {
 	config.type = type;
 	config.providerConfig = configurations;
 	config.environment = environment;
 	config.isEnable = isEnable;
+	config.clsNameSpace = clsNameSpace;
 	reload();
 };
 
@@ -76,3 +77,5 @@ module.exports.getLogger = () => {
 	}
 	return logger;
 };
+
+module.exports.getConfig = () => config;

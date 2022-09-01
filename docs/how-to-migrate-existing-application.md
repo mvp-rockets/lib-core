@@ -188,6 +188,7 @@ Below are the changes you need to do.
    	isEnable: config.awsCloudwatch.enableAwsLogger, //for dev,test and ci keep isEnable=false
    	type: 'aws',
    	environment: config.env,
+    clsNameSpace:"cls-namespace for trace id",
    	configurations: {
    		region: config.awsCloudwatch.region,
    		accessKeyId: config.awsCloudwatch.accessKeyId,

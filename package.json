@@ -28,6 +28,7 @@
     "@google-cloud/logging-winston": "^5.1.2",
     "app-module-path": "^2.2.0",
     "aws-sdk": "^2.1207.0",
+    "cls-hooked": "^4.2.2",
     "folktale": "^2.3.2",
     "google-libphonenumber": "^3.2.30",
     "jsonwebtoken": "^8.5.1",
