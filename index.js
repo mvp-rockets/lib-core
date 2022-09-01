@@ -71,6 +71,6 @@ const token = require('./src/lib/token');
 module.exports.token = token;
 
 // * Logger
-const Logger = require('./src/lib/utilities/logger');
+const Logger = require('./src/lib/logger');
 
 module.exports.Logger = Logger;
