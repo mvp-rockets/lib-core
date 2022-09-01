@@ -1,25 +1,40 @@
 ## Introduction
 
-Follow below steps to migrate your existing napses applications.
+Namma lib simplify four things in our application.
 
-#### steps
+1. Control flow (composeResult,whenResult,respond, apiError)
+2. Validations (validate,isBoolean ...etc)
+3. Token (generate,decode)
+4. Logger (AWS)
 
-- install @napses/namma-lib by running (npm i @napses/namma-lib).
-- create lib.js in the root directory of the project & copy code from here ""
-  - delete functional folder from inside lib folder.
-  - delete index.js, logger.js,run-query.js from inside lib folder.
-  - Replace imports require('lib/functional/logger') to require('lib') in all the places (apis,queries,test cases etc)
-  - Replace imports "const ApiError = require('lib/functional/api-error')" to const {ApiError} = require('lib')
-  - const ApiError = require('lib/functional/api-error');
-- create validation.js in the root directory of the project & copy code from here ""
-  - In validation.js if you are having custom validation which is not present in @napses/namma-lib export it as well as.
-  - In your project replace imports require('lib/validations/validation') to require('validation') in all the places
-  - delete validation folder from inside lib folder.
-  - delete validation-error, validation from inside lib folder.
+## Migrating Existing Napses application.
 
-## Breaking changes.
+Before you start, First you need to install @napses/namma-lib by running
 
-After doing above changes your application might not start because of the breaking changes.Below are the changes you need to do.
+```
+npm i @napses/namma-lib
+```
+
+#### Migrating Control flow
+
+1. Create lib.js in the root directory of the project & copy code from here ""
+2. Delete functional folder from inside lib folder.
+3. Delete index.js,run-query.js from inside lib folder.
+4. Replace imports require('lib/functional/logger') to require('lib') in all the places (apis,queries,test cases etc)
+5. Replace imports "const ApiError = require('lib/functional/api-error')" to "const {ApiError} = require('lib')"
+
+#### Migrating Validations
+
+1. Create validation.js in the root directory of the project & copy code from here ""
+2. if you are having custom validation which is not present in @napses/namma-lib export it as well as in newly created validation.js.
+3. In your project replace imports require('lib/validations/validation') to require('validation') in all the places
+4. delete validation folder from inside lib folder.
+5. delete validation-error.js from inside lib folder.
+
+###### Breaking changes.
+
+After doing above changes your application might not start because of the breaking changes.
+Below are the changes you need to do.
 
 - validation-error.js (ValidationError class is deprecated & has been removed from the source code) instead use below code
 
@@ -29,7 +44,7 @@ After doing above changes your application might not start because of the breaki
 
   instead of new ValidationError()
   use
-  new ApiError(error,"Your Error Message",HTTP_CONSTANT.BAD_REQUEST);
+  new ApiError(error, "Your Error Message", HTTP_CONSTANT.BAD_REQUEST);
 
   ```
 
@@ -106,3 +121,65 @@ After doing above changes your application might not start because of the breaki
   });
 
   ```
+
+#### Migrating token
+
+1. In your index.js add below line
+
+   ```
+   const { token } = require('@napses/namma-lib');
+   token.initialize(config.jwtSecretKey); // config.jwtSecretKey is your jwtSecretKey from the config.
+   ```
+
+2. changes in route.js
+
+   ```
+   <!-- Old code -->
+   function security(req, res, next) {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if (token) {
+        jwt.verify(token, config.jwt_secret, (err, decoded) => {
+            if (err) {
+                next(new ApiError(401, 'unauthorized', 'Failed to authenticate token.'));
+            } else {
+                req.decoded = decoded;
+                next();
+            }
+        });
+    } else {
+        logger.logError('No Token provided', +req.originalUrl);
+        next(new ApiError(403, 'Forbidden', 'No token provided.'));
+    }
+   }
+
+   <!-- new code -->
+   async function security(req, res, next) {
+   	const clientToken = req.body.token || req.query.token || req.headers['x-access-token'];
+   	if (clientToken) {
+   		const decodedTokenResult = await token.decode(clientToken);
+   		whenResult(
+   			(decoded) => {
+   				req.decoded = decoded;
+   				next();
+   			},
+   			(error) => {
+   				logError('token verification failed', error);
+   				next(new ApiError('unauthorized', 'Failed to authenticate token.', HTTP_CONSTANT.UNAUTHORIZED));
+   			}
+   		)(decodedTokenResult);
+   	} else {
+   		logError('No Token provided', +req.originalUrl);
+   		next(new ApiError('Forbidden', 'No token provided.', HTTP_CONSTANT.FORBIDDEN));
+   	}
+   }
+
+   ```
+
+3. Delete token file from inside the lib folder.
+   
+#### Migrating logger
+
+1. In your index.js add below line
+   ```
+   
+   ```
