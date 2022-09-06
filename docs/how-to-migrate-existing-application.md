@@ -62,7 +62,7 @@ Below are the changes you need to do.
    const { ApiError } = require('lib');
 
    app.use((req, res, next) => {
-  	const err = new ApiError('Not Found', 'Resource Not Found!', HTTP_CONSTANT.BAD_REQUEST);
+  	const err = new ApiError('Not Found', 'Resource Not Found!', HTTP_CONSTANT.NOT_FOUND);
   	next(err);
   });
 
@@ -97,27 +97,27 @@ Below are the changes you need to do.
 
   <!-- new code -->
   app.use((error, request, response, next) => {
-  	if (error.constructor === ApiError) {
-  		logError('Failed to execute the operation', {
-  			error: {
-  				value: error.error, stack: error.error ? error.error.stack : []
-  			}
-  		});
-  		if (error.code) { response.status(error.code); }
-
-  		response.send({
-  			status: false,
-  			message: error.errorMessage
-  		});
-  	} else {
-  		response.status(501);
-  		logError('Failed to execute the operation', { value: error, stack: error.stack });
-  		response.send({
-  			status: false,
-  			errorType: 'unhandled',
-  			message: 'Something went wrong!'
-  		});
-  	}
+  const platform = request.headers['x-platform'] || 'unknown-platform';
+	if (error.constructor === ApiError) {
+		logError('Failed to execute the operation', {
+			value: error.error,
+			stack: error.error ? error.error.stack : [],
+			platform
+		});
+		if (error.code) { response.status(error.code); }
+		response.send({
+			status: false,
+			message: error.errorMessage
+		});
+	} else {
+		response.status(501);
+		logError('Failed to execute the operation', { value: error, stack: error.stack, platform });
+		response.send({
+			status: false,
+			errorType: 'unhandled',
+			message: 'Something went wrong!'
+		});
+	}
   });
 
   ```

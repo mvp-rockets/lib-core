@@ -24,9 +24,7 @@ const reload = () => {
 			cloudWatchLogs: new AWS.CloudWatchLogs(),
 			logGroupName: config.providerConfig.logGroupName,
 			logStreamName: config.providerConfig.logStreamName,
-			messageFormatter: ({
-				level, message, body, traceId
-			}) => `[${level}] : ${`traceId : ${traceId}`} ${message} \nBody: ${JSON.stringify(body)}}`
+			jsonMessage: true
 		}));
 	} else if (config.isEnable && config.type === 'google') {
 		const { LoggingWinston } = require('@google-cloud/logging-winston');
