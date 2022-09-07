@@ -48,7 +48,7 @@ Below are the changes you need to do.
 
   ```
 
-- changes in index.js (ref: )
+- changes in index.js (ref: https://bitbucket.org/peoppl_co/bit_monitor/pull-requests/1 )
 
   ```
   <!-- old code -->
