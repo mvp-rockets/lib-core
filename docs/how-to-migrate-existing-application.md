@@ -9,10 +9,10 @@ Namma lib simplify four things in our application.
 
 ## Migrating Existing Napses application.
 
-Before you start, First you need to install @napses/namma-lib by running
+Before you start, First you need to install @mvp-rockets/namma-lib by running
 
 ```
-npm i @napses/namma-lib
+npm i @mvp-rockets/namma-lib
 ```
 
 #### Migrating Control flow
@@ -26,7 +26,7 @@ npm i @napses/namma-lib
 #### Migrating Validations
 
 1. Create validation.js in the root directory of the project & copy code from here ""
-2. if you are having custom validation which is not present in @napses/namma-lib export it as well as in newly created validation.js.
+2. if you are having custom validation which is not present in @mvp-rockets/namma-lib export it as well as in newly created validation.js.
 3. In your project replace imports require('lib/validations/validation') to require('validation') in all the places
 4. delete validation folder from inside lib folder.
 5. delete validation-error.js from inside lib folder.
@@ -39,7 +39,7 @@ Below are the changes you need to do.
 - validation-error.js (ValidationError class is deprecated & has been removed from the source code) instead use below code
 
   ```
-  const { HTTP_CONSTANT } = require('@napses/namma-lib');
+  const { HTTP_CONSTANT } = require('@mvp-rockets/namma-lib');
   const { ApiError } = require('lib');
 
   instead of new ValidationError()
@@ -58,7 +58,7 @@ Below are the changes you need to do.
   });
 
   <!-- new code -->
-   const { HTTP_CONSTANT } = require('@napses/namma-lib');
+   const { HTTP_CONSTANT } = require('@mvp-rockets/namma-lib');
    const { ApiError } = require('lib');
 
    app.use((req, res, next) => {
@@ -127,7 +127,7 @@ Below are the changes you need to do.
 1. In your index.js add below line
 
    ```
-   const { token } = require('@napses/namma-lib');
+   const { token } = require('@mvp-rockets/namma-lib');
    token.initialize(config.jwtSecretKey); // config.jwtSecretKey is your jwtSecretKey from the config.
    ```
 
@@ -182,7 +182,7 @@ Below are the changes you need to do.
 1. In your index.js add below line
 
    ```
-   const { Logger } = require('@napses/namma-lib');
+   const { Logger } = require('@mvp-rockets/namma-lib');
    const config = require('config/config'); //your config file for aws credentials
    Logger.initialize({
    	isEnable: config.awsCloudwatch.enableAwsLogger, //for dev,test and ci keep isEnable=false

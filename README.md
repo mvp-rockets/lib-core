@@ -49,12 +49,12 @@
 ## 3. Installation
 
 ```
-    npm install @napses/namma-lib
+    npm install @mvp-rockets/namma-lib
 ```
 
 ## 4. How to imports.
 
-- All the function from @napses/namma-lib
+- All the function from @mvp-rockets/namma-lib
 
 ```
     const {
@@ -74,7 +74,7 @@
          },
          HTTP_CONSTANT,
          token
-        } = require('@napses/namma-lib')
+        } = require('@mvp-rockets/namma-lib')
 ```
 
 - Only the utilities
@@ -86,7 +86,7 @@ const {
         ....
         ....
         all the utilities function here
-        } = require('@napses/namma-lib/utilities')
+        } = require('@mvp-rockets/namma-lib/utilities')
 ```
 
 - Only the validations
@@ -98,7 +98,7 @@ const {
         ....
         ....
         all the utilities function here
-        } = require('@napses/namma-lib/validations')
+        } = require('@mvp-rockets/namma-lib/validations')
 ```
 
 - Only the token
@@ -106,7 +106,7 @@ const {
 ```
 const {
          token
-        } = require('@napses/namma-lib')
+        } = require('@mvp-rockets/namma-lib')
 ```
 
 - Only the HTTP_CONSTANT
@@ -114,7 +114,7 @@ const {
   ```
   const {
   HTTP_CONSTANT
-  } = require('@napses/namma-lib')
+  } = require('@mvp-rockets/namma-lib')
   ```
 
 ## 5. How to use token
@@ -123,7 +123,7 @@ const {
 <!-- initialize token in your index.js -->
 const {
          token
-        } = require('@napses/namma-lib');
+        } = require('@mvp-rockets/namma-lib');
 
 token.initialize("Your Jwt secret key");
 
@@ -146,7 +146,7 @@ console.log(decodedTokenResult); // Result.Error("Invalid token")
 
 ```
 <!-- initialize logger in your index.js -->
-const { Logger } = require('@napses/namma-lib');
+const { Logger } = require('@mvp-rockets/namma-lib');
 
 Logger.initialize({
 	isEnable: true, // for dev,qa use false
@@ -163,7 +163,7 @@ Logger.initialize({
 });
 
 <!-- add below code for unique traceId for each request -->
-const { logInfo } = require('@napses/namma-lib/utilitiesut');
+const { logInfo } = require('@mvp-rockets/namma-lib/utilitiesut');
 app.use((req, res, next) => {
 	const namespace = cls.getNamespace("<cls name for trace Id>");
 	const platform = req.headers['x-platform'] || 'unknown-platform';
