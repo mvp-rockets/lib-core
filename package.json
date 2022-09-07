@@ -1,6 +1,6 @@
 {
   "name": "@napses/namma-lib",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A functional utility library for developing express api",
   "main": "index.js",
   "scripts": {
