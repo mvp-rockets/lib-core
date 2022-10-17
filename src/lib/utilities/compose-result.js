@@ -24,11 +24,9 @@ const composeResult = function () {
 	const last = init.pop();
 	return ifElse(
 		R.isEmpty,
-		() => R.composeP(last),
-		() => R.composeP(
-			R.composeP.apply(this, R.map(executeIfResultIsSuccessful, init)),
-			last
-		)
+		() => R.composeWith(R.andThen)([last]),
+		() => R.composeWith(R.andThen)([R.composeWith(R.andThen)([]).apply(this, R.map(executeIfResultIsSuccessful, init)), last])
+
 	)(init);
 };
 module.exports = composeResult;
