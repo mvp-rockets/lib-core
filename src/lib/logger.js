@@ -7,9 +7,6 @@ const logDir = './logs';
 let transport;
 
 let logger;
-if (!fs.existsSync(logDir)) {
-	fs.mkdirSync(logDir);
-}
 
 const reload = () => {
 	if (config.isEnable && config.type === 'aws') {
@@ -40,6 +37,9 @@ const reload = () => {
 			]
 		});
 	} else if (!logger) {
+		if (!fs.existsSync(logDir)) {
+			fs.mkdirSync(logDir);
+		}
 		const logFile = `./logs/${config.environment || 'log'}`;
 		transport = new (winston.transports.DailyRotateFile)({
 			filename: logFile,
