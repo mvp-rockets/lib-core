@@ -1,6 +1,6 @@
 {
   "name": "@mvp-rockets/namma-lib",
-  "version": "1.2.0-beta.1",
+  "version": "1.2.0-beta.2",
   "description": "A functional utility library for developing express api",
   "main": "index.js",
   "scripts": {
