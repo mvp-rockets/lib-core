@@ -37,7 +37,7 @@ const reload = () => {
 			]
 		});
 	} else if (!logger) {
-		if (!fs.existsSync(logDir)) {
+		if (!fs.existsSync(logDir) && config.type === 'local') {
 			fs.mkdirSync(logDir);
 		}
 		const logFile = `./logs/${config.environment || 'log'}`;
