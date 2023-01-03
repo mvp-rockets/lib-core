@@ -36,8 +36,8 @@ const reload = () => {
 				loggingWinston
 			]
 		});
-	} else if (!logger) {
-		if (!fs.existsSync(logDir) && config.type === 'local') {
+	} else if (config.type === 'file') {
+		if (!fs.existsSync(logDir)) {
 			fs.mkdirSync(logDir);
 		}
 		const logFile = `./logs/${config.environment || 'log'}`;
@@ -55,6 +55,10 @@ const reload = () => {
 				transport
 			]
 		});
+	} else if (!logger) {
+		logger = winston.add(new winston.transports.Console({
+			format: winston.format.simple()
+		}));
 	}
 };
 module.exports.initialize = ({
