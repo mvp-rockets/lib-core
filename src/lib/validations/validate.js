@@ -1,7 +1,7 @@
 const R = require('ramda');
-const ApiError = require('src/lib/utilities/api-error');
 const Result = require('folktale/result');
-const HTTP_CONSTANT = require('src/lib/utilities/http-constant');
+const ApiError = require('../utilities/api-error');
+const HTTP_CONSTANT = require('../utilities/http-constant');
 
 const notNil = R.compose(R.not, R.isNil);
 

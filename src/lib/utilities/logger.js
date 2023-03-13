@@ -1,7 +1,7 @@
 const R = require('ramda');
 const Result = require('folktale/result');
-const logger = require('src/lib/logger');
 const cls = require('cls-hooked');
+const logger = require('../logger');
 
 const logError = R.curry((message, value) => {
 	const namespace = cls.getNamespace(logger.getConfig().clsNameSpace);
