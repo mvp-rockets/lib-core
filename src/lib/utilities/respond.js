@@ -4,8 +4,12 @@ const ApiError = require('./api-error');
 const logger = require('./logger');
 const whenResult = require('./whenResult');
 
-const sendSuccess = R.curry(async (message, result) => {
-	logger.logInfo(message, result);
+const sendSuccess = R.curry(async (message, isLogged, result) => {
+	if (isLogged) {
+		logger.logInfo(message, result);
+	} else {
+		logger.logInfo(message, {});
+	}
 	return Result.Ok({
 		message,
 		status: true,
@@ -20,7 +24,7 @@ const sendFailure = R.curry(async (errorMessage, error) => {
 	return Result.Error(new ApiError(error, errorMessage));
 });
 
-module.exports = async (result, message, errorMessage) => whenResult(
-	sendSuccess(message || 'Action successful'),
+module.exports = async (result, message, errorMessage, isLogged = true) => whenResult(
+	sendSuccess(message || 'Action successful', isLogged),
 	sendFailure(errorMessage || 'Failure')
 )(result);
