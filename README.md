@@ -144,6 +144,9 @@ console.log(decodedTokenResult); // Result.Error("Invalid token")
 
 ## 6. How to use logger.
 
+Now logger comes with two libraries internally ie, winston and pino.
+By default it uses winston.
+
 ```
 <!-- initialize logger in your index.js -->
 const { Logger } = require('@mvp-rockets/namma-lib');
@@ -174,6 +177,39 @@ app.use((req, res, next) => {
 	});
 });
 ```
+
+```
+To use pino, you need to pass following properties
+        loggerType: "pino"
+        loggerOptions: "cloudwatch"
+
+Using pino logger you can send logs to more than one destination. for now Options are file, cloudwatch, terminal.
+To use more than one destination you can specify in loggerOptions by comma separated values.
+for example:
+        loggerOptions: "cloudwatch, file"
+
+Usage example for pino logger:
+
+Logger.initialize({
+	environment: "<env name>",
+	clsNameSpace: <"cls name for trace Id">,
+	configurations: {
+		region: <"aws region">,
+		accessKeyId: <"aws access Key Id">,
+		secretKey: <"aws secret Key">,
+		logGroupName: <"log group name">,
+		logStreamName: <"log stream name">
+	},
+        loggerType: "pino"
+        loggerOptions: "cloudwatch"
+});
+
+```
+
+---
+> **NOTE:**
+Before switching to pino logger, make sure if you have alerts based on level: error. you need to make some change because for now using this library. level will be integer(info as 30, error as 50) and there will be another property label where value will be error, info, debug.
+---
 
 ## 3. Video walkthrough Tutorials
 
