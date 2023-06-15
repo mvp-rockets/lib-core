@@ -8,7 +8,8 @@ const logError = R.curry((message, value) => {
 	logger.getLogger().error({
 		message,
 		body: value,
-		traceId: namespace ? namespace.get('traceId') : ''
+		traceId: namespace ? namespace.get('traceId') : '',
+		label: 'error'
 	});
 	return Result.Ok('Successfully logged error message');
 });
@@ -18,7 +19,8 @@ const logInfo = R.curry((message, value) => {
 	logger.getLogger().info({
 		message,
 		body: value,
-		traceId: namespace ? namespace.get('traceId') : ''
+		traceId: namespace ? namespace.get('traceId') : '',
+		label: 'info'
 	});
 	return Result.Ok('Successfully logged info message');
 });
@@ -28,7 +30,8 @@ const logDebug = R.curry((message, value) => {
 	logger.getLogger().debug({
 		message,
 		body: value,
-		traceId: namespace ? namespace.get('traceId') : ''
+		traceId: namespace ? namespace.get('traceId') : '',
+		label: 'debug'
 	});
 	return Result.Ok('Successfully logged debug message');
 });

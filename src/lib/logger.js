@@ -1,4 +1,5 @@
 const winston = require('winston');
+const pino = require('pino');
 require('winston-daily-rotate-file');
 const fs = require('fs');
 
@@ -8,7 +9,70 @@ let transport;
 
 let logger;
 
+const initPino = () => {
+	const loggersAvailable = {
+		file: {
+			target: './pino-stream'
+		},
+		cloudwatch: {
+			target: '@serdnam/pino-cloudwatch-transport',
+			options: {
+				logGroupName: config.providerConfig.logGroupName,
+				logStreamName: config.providerConfig.logStreamName,
+				awsRegion: config.providerConfig.region,
+				awsAccessKeyId: config.providerConfig.accessKeyId,
+				awsSecretAccessKey: config.providerConfig.secretKey,
+				interval: 10
+			}
+		},
+		terminal: {
+			target: 'pino-pretty',
+			options: {
+				colorize: true
+			}
+		}
+	};
+
+	let targets = [];
+	let loggerOptions = (config.loggerOptions || '');
+
+	if (config.enableDevLog) {
+		targets = [
+			loggersAvailable.terminal
+		];
+
+		if (loggerOptions.includes('terminal')) {
+			loggerOptions = loggerOptions.replace('terminal', '');
+		}
+	}
+
+	const enabledLoggers = loggerOptions.split(/,\s*/g);
+
+	if (enabledLoggers.includes('file')) {
+		if (!fs.existsSync(logDir)) {
+			fs.mkdirSync(logDir);
+		}
+	}
+
+	enabledLoggers.forEach((loggerType) => {
+		if (loggersAvailable[loggerType]) {
+			targets.push(loggersAvailable[loggerType]);
+		}
+	});
+
+	const pinoTransport = pino.transport({
+		targets
+	});
+
+	logger = pino(pinoTransport);
+};
+
 const reload = () => {
+	if (config.loggerType === 'pino') {
+		initPino();
+		return;
+	}
+
 	if (config.isEnable && config.type === 'aws') {
 		const WinstonCloudWatch = require('winston-cloudwatch');
 		const AWS = require('aws-sdk');
@@ -61,14 +125,19 @@ const reload = () => {
 		}));
 	}
 };
+
 module.exports.initialize = ({
-	type, configurations, environment, isEnable, clsNameSpace
+	type, configurations, environment, isEnable, clsNameSpace, loggerType = 'winston', loggerOptions = '', enableDevLog
 }) => {
 	config.type = type;
 	config.providerConfig = configurations;
 	config.environment = environment;
 	config.isEnable = isEnable;
 	config.clsNameSpace = clsNameSpace;
+	config.loggerType = loggerType;
+	config.loggerOptions = loggerOptions;
+	config.enableDevLog = enableDevLog;
+
 	reload();
 };
 
