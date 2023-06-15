@@ -12,6 +12,5 @@ module.exports = () => {
 		frequency: logRotationOptions.frequency,
 		verbose: logRotationOptions.verbose,
 		date_format: logRotationOptions.date_format,
-		max_logs: '30d' // Optional, maximum number of log files to keep (10 days in this example)
 	});
 };
