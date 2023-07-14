@@ -22,7 +22,7 @@ const initPino = () => {
 				awsRegion: config.providerConfig.region,
 				awsAccessKeyId: config.providerConfig.accessKeyId,
 				awsSecretAccessKey: config.providerConfig.secretKey,
-				interval: 10
+				interval: config.providerConfig.interval || 10
 			}
 		},
 		terminal: {
