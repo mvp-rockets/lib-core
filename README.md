@@ -198,7 +198,8 @@ Logger.initialize({
 		accessKeyId: <"aws access Key Id">,
 		secretKey: <"aws secret Key">,
 		logGroupName: <"log group name">,
-		logStreamName: <"log stream name">
+		logStreamName: <"log stream name">,
+                interval: <"interval integer value">
 	},
         loggerType: "pino"
         loggerOptions: "cloudwatch"
