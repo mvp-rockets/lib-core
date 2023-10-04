@@ -33,7 +33,7 @@
     "file-stream-rotator": "^1.0.0",
     "folktale": "^2.3.2",
     "google-libphonenumber": "^3.2.30",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.19",
     "nyc": "^15.1.0",
     "pino": "^8.14.1",
