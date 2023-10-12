@@ -30,7 +30,17 @@ const initPino = () => {
 			options: {
 				colorize: true
 			}
-		}
+		},
+		loki: {
+                        target: "pino-loki",
+                        options: {
+                                host: config.providerConfig.lokiUrl,
+                                batching: false,
+                                labels: {
+						application: config.providerConfig.logGroupName
+					} // Can add more labels as required
+                        }
+                }
 	};
 
 	let targets = [];
