@@ -4,6 +4,7 @@ const cls = require('cls-hooked');
 const logger = require('../logger');
 
 const logError = R.curry((message, value) => {
+	console.log("Reaching here for logging",message, value)
 	const namespace = cls.getNamespace(logger.getConfig().clsNameSpace);
 	logger.getLogger().error({
 		message,
