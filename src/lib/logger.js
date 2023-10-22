@@ -10,6 +10,7 @@ let transport;
 let logger;
 
 const initPino = () => {
+	console.log("Inside Init Pino debug", config.providerConfig)
 	const loggersAvailable = {
 		file: {
 			target: './pino-stream'
