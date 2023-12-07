@@ -32,15 +32,15 @@ const initPino = () => {
 			}
 		},
 		loki: {
-                        target: "pino-loki",
-                        options: {
-                                host: config.providerConfig.lokiUrl,
-                                batching: false,
-                                labels: {
-						application: config.providerConfig.logGroupName
-					} // Can add more labels as required
-                        }
-                }
+			target: "pino-loki",
+			options: {
+				host: config.providerConfig.lokiUrl,
+				batching: false,
+				labels: {
+					application: config.providerConfig.logGroupName
+				}
+			}
+		}
 	};
 
 	let targets = [];
