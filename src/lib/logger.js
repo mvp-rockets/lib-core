@@ -9,7 +9,7 @@ let transport;
 
 let logger;
 
-const initPino = () => {	
+const initPino = () => {
 	const loggersAvailable = {
 		file: {
 			target: './pino-stream'
