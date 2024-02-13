@@ -37,7 +37,8 @@ const initPino = () => {
 				host: config.providerConfig.lokiUrl,
 				batching: false,
 				labels: {
-					application: config.providerConfig.logGroupName
+					application: config.providerConfig.logGroupName,
+					logStream: config.providerConfig.logStreamName
 				}
 			}
 		}
