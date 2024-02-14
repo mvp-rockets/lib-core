@@ -1,12 +1,12 @@
 const chai = require('chai');
 const sinon = require('sinon');
 const axios = require('axios');
-const ExternalAPIWrapper = require('../../../src/lib/external-API-wrapper');
+const FetchAPI = require('../../../src/lib/fetch-api');
 const { verifyResultOk, verifyResultError, verifyError } = require('helpers/verifiers');
 const { resolveError, resolveDbResult } = require('helpers/resolvers');
 const expect = chai.expect;
 
-describe('ExternalAPIWrapper', () => {
+describe('FetchAPI', () => {
     let axiosInstance;
     const sandbox = sinon.createSandbox();
 
@@ -35,7 +35,7 @@ describe('ExternalAPIWrapper', () => {
 
         sandbox.stub(axiosInstance, 'request').resolves({ data: responseData });
 
-        const finalResult = await ExternalAPIWrapper.perform(requestConfig);
+        const finalResult = await FetchAPI.perform(requestConfig);
 
         verifyResultOk((result) => {
             expect(result).to.eql(responseData);
@@ -54,7 +54,7 @@ describe('ExternalAPIWrapper', () => {
 
         sandbox.stub(axiosInstance, 'request').returns(resolveError('Mocked Error'));
 
-        const finalResult = await ExternalAPIWrapper.perform(requestConfig);
+        const finalResult = await FetchAPI.perform(requestConfig);
 
             verifyResultError((error) => {
                 expect(error.response.statusText).to.be.eql('Not Found');
@@ -81,7 +81,7 @@ describe('ExternalAPIWrapper', () => {
 
         sinon.stub(axiosInstance, 'request').resolves({ data: responseData });
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
         expect(result.value).to.eql(responseData);
     });
 
@@ -101,7 +101,7 @@ describe('ExternalAPIWrapper', () => {
 
         sinon.stub(axiosInstance, 'request').resolves({ data: responseData });
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         expect(result.value).to.eql(responseData);
     });
@@ -124,7 +124,7 @@ describe('ExternalAPIWrapper', () => {
         sandbox.stub(axiosInstance, 'request').onCall(0).rejects(new Error('Mocked error'));
         // sandbox.stub(axiosInstance, 'request').resolves({ data: responseData });
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         // expect(result.isOk()).to.be.true;
         expect(result.value).to.eql(responseData);
@@ -151,9 +151,9 @@ describe('ExternalAPIWrapper', () => {
 
         const startTime = Date.now();
         await Promise.all([
-            ExternalAPIWrapper.perform(requestConfig),
-            ExternalAPIWrapper.perform(requestConfig),
-            ExternalAPIWrapper.perform(requestConfig)
+            FetchAPI.perform(requestConfig),
+            FetchAPI.perform(requestConfig),
+            FetchAPI.perform(requestConfig)
         ]);
         const endTime = Date.now();
 
@@ -173,7 +173,7 @@ describe('ExternalAPIWrapper', () => {
         // Stub axios to always reject
         sinon.stub(axiosInstance, 'request').rejects(new Error('Mocked error'));
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         expect(result.value).to.be.an.instanceOf(Error);
     });
@@ -190,9 +190,9 @@ describe('ExternalAPIWrapper', () => {
 
         const startTime = Date.now();
         await Promise.all([
-            ExternalAPIWrapper.perform(requestConfig),
-            ExternalAPIWrapper.perform(requestConfig),
-            ExternalAPIWrapper.perform(requestConfig)
+            FetchAPI.perform(requestConfig),
+            FetchAPI.perform(requestConfig),
+            FetchAPI.perform(requestConfig)
         ]);
         const endTime = Date.now();
 
@@ -206,7 +206,7 @@ describe('ExternalAPIWrapper', () => {
             // Missing URL, method, etc.
         };
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         expect(result.value).to.be.an.instanceOf(Error);
     });
@@ -221,7 +221,7 @@ describe('ExternalAPIWrapper', () => {
         // Stub axios to throw a network error
         sinon.stub(axiosInstance, 'request').rejects({ code: 'ENOTFOUND' });
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         expect(result.value).to.be.an.instanceOf(Error);
         expect(result.value.code).to.equal('ENOTFOUND');
@@ -239,7 +239,7 @@ describe('ExternalAPIWrapper', () => {
         // Stub axios to resolve immediately
         sinon.stub(axiosInstance, 'request').resolves({ data: responseData });
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         expect(result.value).to.eql(responseData);
     });
@@ -253,7 +253,7 @@ describe('ExternalAPIWrapper', () => {
         // Stub axios to reject with a server error (status code 500)
         sinon.stub(axiosInstance, 'request').rejects({ response: { status: 500 } });
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         expect(result.value).to.be.an.instanceOf(Error);
     });
@@ -281,7 +281,7 @@ describe('ExternalAPIWrapper', () => {
         // Stub axios to resolve immediately
         sinon.stub(axiosInstance, 'request').resolves({ data: responseData });
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         expect(result.value).to.eql(responseData);
     });
@@ -292,7 +292,7 @@ describe('ExternalAPIWrapper', () => {
             method: 'get',
         };
 
-        const result = await ExternalAPIWrapper.perform(requestConfig);
+        const result = await FetchAPI.perform(requestConfig);
 
         expect(result.value).to.be.an.instanceOf(Error);
     });
