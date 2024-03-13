@@ -22,7 +22,10 @@
     "ramda",
     "express"
   ],
-  "author": "napses.com",
+  "publishConfig": {
+    "provenance": true
+  },
+  "author": "Napses.com",
   "license": "MIT",
   "dependencies": {
     "@google-cloud/logging-winston": "^6.0.0",
