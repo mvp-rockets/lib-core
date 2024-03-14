@@ -55,7 +55,10 @@ describe('validations: validate', () => {
 		verifyResultError((validationError) => {
 			expect(validationError).to.be.instanceOf(ApiError);
 			expect(validationError.code).to.be.eql(HTTP_CONSTANT.BAD_REQUEST);
-			expect(validationError.errorMessage).to.be.eql('Validation Error');
+			expect(validationError.errorMessage).to.be.eql([
+				'userId should be valid',
+				'firstName should not be empty',
+				'lastName should not be empty']);
 			expect(validationError.error).to.be.eql([
 				'userId should be valid',
 				'firstName should not be empty',

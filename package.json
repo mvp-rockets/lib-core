@@ -1,6 +1,6 @@
 {
   "name": "@mvp-rockets/namma-lib",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "A functional utility library for developing express api",
   "main": "index.js",
   "scripts": {
@@ -22,13 +22,16 @@
     "ramda",
     "express"
   ],
-  "author": "napses.com",
+  "publishConfig": {
+    "provenance": true
+  },
+  "author": "Napses.com",
   "license": "MIT",
   "dependencies": {
     "@google-cloud/logging-winston": "^6.0.0",
     "@serdnam/pino-cloudwatch-transport": "^1.0.4",
     "app-module-path": "^2.2.0",
-    "aws-sdk": "^2.1539.0",
+    "aws-sdk": "^2.1576.0",
     "axios": "^1.6.7",
     "axios-retry": "^4.0.0",
     "bottleneck": "^2.19.5",
@@ -37,25 +40,25 @@
     "folktale": "^2.3.2",
     "google-libphonenumber": "^3.2.34",
     "jsonwebtoken": "^9.0.2",
-    "nodemon": "^3.0.3",
+    "nodemon": "^3.1.0",
     "nyc": "^15.1.0",
-    "pino": "^8.17.2",
+    "pino": "^8.19.0",
     "ramda": "^0.29.1",
     "supervisor": "^0.12.0",
     "uuid": "^9.0.1",
     "uuid-validate": "^0.0.3",
-    "winston": "^3.11.0",
+    "winston": "^3.12.0",
     "winston-cloudwatch": "^6.2.0",
-    "winston-daily-rotate-file": "^4.7.1"
+    "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/eslint-parser": "^7.23.3",
+    "@babel/core": "^7.24.0",
+    "@babel/eslint-parser": "^7.23.10",
     "chai": "^4.4.1",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "factory-girl": "^5.0.4",
-    "mocha": "^10.2.0",
+    "mocha": "^10.3.0",
     "sinon": "^17.0.1",
     "sinon-chai": "^3.7.0"
   },
