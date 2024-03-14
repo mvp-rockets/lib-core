@@ -10,12 +10,6 @@ const executeIfResultIsSuccessful = R.curry(async (fn, result) => {
 	return Result.Error('Return type of execution was not type of folktale/result.');
 });
 
-/*
-! composeP is deprecated & no longer maintain by ramda, Need to be fixed ASAP
-TODO: Instead of composeP we need to use composeWith Reference: https://github.com/ramda/ramda/issues/3099
-* After removing composeP we need to upgrade ramda to fro 0.26.1 to 0.28.0
-FIXME: Instead of composeP we need to use composeWith Reference: https://github.com/ramda/ramda/issues/3099
- */
 const composeResult = function () {
 	if (arguments.length === 0) {
 		throw new Error('onSuccess requires at least one argument');
@@ -24,11 +18,14 @@ const composeResult = function () {
 	const last = init.pop();
 	return ifElse(
 		R.isEmpty,
-		() => R.composeP(last),
-		() => R.composeP(
-			R.composeP.apply(this, R.map(executeIfResultIsSuccessful, init)),
-			last
-		)
+		() => R.composeWith(R.andThen)([last]),
+		() => {
+			const args = R.map(executeIfResultIsSuccessful, init);
+			return R.composeWith(R.andThen)([
+				...args,
+				last
+			])
+		}
 	)(init);
 };
 module.exports = composeResult;

@@ -6,7 +6,7 @@ factory.define('user', Object, {
 	lastName: factory.chance('last'),
 	mobileNumber: factory.chance('phone', { formatted: false }),
 	email: factory.chance('email'),
-	age: factory.chance('age')
+	age: factory.chance('age', {type: 'adult'})
 });
 
 factory.define('jwt', Object, {
