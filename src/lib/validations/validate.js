@@ -23,7 +23,7 @@ const mapValueAndRules = R.curry((data, allRules) => {
 
 const generateValidationSet = (data, rules) => R.compose(R.flatten, mapValueAndRules)(data, rules);
 
-const validationError = (errors) => Result.Error(new ApiError(errors, 'Validation Error', HTTP_CONSTANT.BAD_REQUEST));
+const validationError = (errors) => Result.Error(new ApiError(errors, errors, HTTP_CONSTANT.BAD_REQUEST));
 
 const formResult = (errors) => R.cond([
 	[R.isEmpty, Result.Ok],
