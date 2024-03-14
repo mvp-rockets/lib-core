@@ -104,17 +104,18 @@ describe('validations: optional', () => {
 			email: "invalid",
 			age: 30
 		});
+		let errorMsg = [
+			'userId should be valid',
+			'firstName should not be empty',
+			'lastName should not be empty',
+			'email should be valid',
+			'age should be less then 18'
+		];
 		verifyResultError((validationError) => {
 			expect(validationError).to.be.instanceOf(ApiError);
 			expect(validationError.code).to.be.eql(HTTP_CONSTANT.BAD_REQUEST);
-			expect(validationError.errorMessage).to.be.eql('Validation Error');
-			expect(validationError.error).to.be.eql([
-				'userId should be valid',
-				'firstName should not be empty',
-				'lastName should not be empty',
-				'email should be valid',
-				'age should be less then 18'
-			]);
+			expect(validationError.errorMessage).to.be.eql(errorMsg);
+			expect(validationError.error).to.be.eql(errorMsg);
 		})(validationResult);
 	});
 
