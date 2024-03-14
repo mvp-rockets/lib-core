@@ -183,10 +183,10 @@ To use pino, you need to pass following properties
         loggerType: "pino"
         loggerOptions: "cloudwatch"
 
-Using pino logger you can send logs to more than one destination. for now Options are file, cloudwatch, terminal.
+Using pino logger you can send logs to more than one destination. for now Options are file, cloudwatch, terminal and loki.
 To use more than one destination you can specify in loggerOptions by comma separated values.
 for example:
-        loggerOptions: "cloudwatch, file"
+        loggerOptions: "cloudwatch, file, loki"
 
 Usage example for pino logger:
 

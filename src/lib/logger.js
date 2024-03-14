@@ -30,6 +30,17 @@ const initPino = () => {
 			options: {
 				colorize: true
 			}
+		},
+		loki: {
+			target: "pino-loki",
+			options: {
+				host: config.providerConfig.lokiUrl,
+				batching: false,
+				labels: {
+					application: config.providerConfig.logGroupName,
+					logStream: config.providerConfig.logStreamName
+				}
+			}
 		}
 	};
 
